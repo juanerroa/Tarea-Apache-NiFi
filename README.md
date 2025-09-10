@@ -59,7 +59,7 @@ El flujo de procesamiento de datos está diseñado para ser directo y eficiente,
 
 - **Host:** postgres
 - **Puerto:** 5433
-- **Base de Datos:** nifi_db
+- **Base de Datos:** postgres
 - **Usuario:** nifi
 - **Contraseña:** nifi123
 
@@ -86,7 +86,7 @@ Para que NiFi pueda comunicarse con PostgreSQL:
 3. Configurar el servicio DBCPConnectionPool en NiFi:
    - **Database Driver Class Name:** `org.postgresql.Driver`
    - **Database Driver Location(s):** `/opt/nifi/drivers/postgresql-42.7.6.jar`
-   - **Database URL:** `jdbc:postgresql://postgres:5433/nifi_db`
+   - **Database URL:** `jdbc:postgresql://postgres:5432/postgres`
    - **Usuario / Contraseña:** `nifi / nifi123`
 
 ## ⚡ Guía de Inicio Rápido
@@ -95,11 +95,12 @@ Para que NiFi pueda comunicarse con PostgreSQL:
 ```bash
 docker-compose up -d
 ```
-2. **Abrir NiFi:** 🌐 [https://localhost:8443/nifi/](https://localhost:8443/nifi/)
-3. **Habilitar Servicios:** ✅ DBCPConnectionPool y JsonTreeReader.
-4. **Conectar los Procesadores:** 🔗 Según el flujo ETL.
-5. **Ejecutar el Flujo:** ▶️ Iniciar GenerateFlowFile.
-6. **Verificar los Datos:** 🔍
+2. **Crear la tabla de users:** ➡️ users_table.sql
+3. **Abrir NiFi:** 🌐 [https://localhost:8443/nifi/](https://localhost:8443/nifi/)
+4. **Habilitar Servicios:** ✅ DBCPConnectionPool y JsonTreeReader.
+5. **Conectar los Procesadores:** 🔗 Según el flujo ETL.
+6. **Ejecutar el Flujo:** ▶️ Iniciar GenerateFlowFile.
+7. **Verificar los Datos:** 🔍
 ```sql
 SELECT * FROM users;
 ```
