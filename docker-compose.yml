@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  nifi:
+    image: apache/nifi:latest
+    container_name: nifi
+    ports:
+      - "8443:8443"
+    restart: unless-stopped
+    environment:
+      NIFI_WEB_HTTP_PORT: 8443
+      NIFI_WEB_HTTPS_PORT: ""
+      SINGLE_USER_CREDENTIALS_USERNAME: admin
+      SINGLE_USER_CREDENTIALS_PASSWORD: DummyPass123!
+    volumes:
+      - nifi_data:/opt/nifi/nifi-current/flowfile_repository
+      - nifi_database_repository:/opt/nifi/nifi-current/database_repository
+      - nifi_content_repository:/opt/nifi/nifi-current/content_repository
+      - nifi_provenance_repository:/opt/nifi/nifi-current/provenance_repository
+      - nifi_conf:/opt/nifi/nifi-current/conf
+      - ./nifi_exports:/opt/nifi/nifi-current/exports  # Carpeta local para archivos exportados
+      - ./drivers:/opt/nifi/drivers                    # Aquí pondrás el JDBC driver de PostgreSQL
+
+  postgres:
+    image: postgres:15
+    container_name: nifipostgres
+    environment:
+      POSTGRES_USER: nifi
+      POSTGRES_PASSWORD: nifi123
+      POSTGRES_DB: nifi_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+volumes:
+  nifi_data:
+  nifi_database_repository:
+  nifi_content_repository:
+  nifi_provenance_repository:
+  nifi_conf:
