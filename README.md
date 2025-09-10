@@ -1,5 +1,7 @@
 # 🚀 NiFi: Extracción de Usuarios → PostgreSQL
 
+![Demostración del Flujo NiFi](Kazam_screencast_00000.gif)
+
 Este proyecto implementa un flujo de ETL (Extracción, Transformación y Carga) completo utilizando Apache NiFi para automatizar el proceso de obtención de datos desde una API pública, su posterior transformación y la inserción final en una base de datos PostgreSQL.
 
 La infraestructura completa se gestiona a través de Docker Compose, lo que simplifica su despliegue en cualquier entorno que tenga Docker instalado.
