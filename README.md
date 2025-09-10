@@ -117,6 +117,3 @@ SELECT * FROM users;
 - PostgreSQL
 - Docker Compose
 - API Pública: jsonplaceholder.typicode.com/users
-
-## 👤 Autor
-Juan Carlos Err
